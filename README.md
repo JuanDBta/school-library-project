@@ -58,9 +58,9 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **[Add person.rb]**
-- **[Add student.rb]**
-- **[Add teacher.rb]**
+- **[Added person.rb]**
+- **[Added student.rb]**
+- **[Added teacher.rb]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
