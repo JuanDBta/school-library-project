@@ -21,3 +21,9 @@ class Person
     of_age? || @parent_permission
   end
 end
+
+person_1 = Person.new(15, name: 'Juan', parent_permission: false)
+puts person_1.can_use_services?
+
+person_2 = Person.new(48, name: 'David')
+puts person_2.can_use_services?
