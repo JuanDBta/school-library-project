@@ -5,8 +5,6 @@
   <img src="./school.jpg" alt="logo" width="200"  height="auto">
   <br/>
 
-  <h3><b>SCHOOL LIBRARY</b></h3>
-
 </div>
 
 
