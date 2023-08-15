@@ -7,8 +7,6 @@ class Student < Person
     @classromm = classroom
   end
 
-  super(name, age, parent_permission)
-
   def play_hooky
     '¯(ツ)/¯'
   end
