@@ -36,7 +36,7 @@
 
 ## 🛠 Built With <a name="built-with"></a>
 
-1- RUBY<br>
+1- Ruby 3.2.2<br>
 2- Gitflow<br>
 3- Rubocop
 
@@ -61,6 +61,7 @@
 - **[Added person.rb]**
 - **[Added student.rb]**
 - **[Added teacher.rb]**
+- **[Used the "Decorator" design pattern]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -110,7 +111,6 @@ You can deploy this project using:<br>[Coming Soon!!!](https://github.com/JuanDB
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Use the "Decorator" design pattern]**
 - [ ] **[Set up associations]**
 - [ ] **[Add basic UI]**
 - [ ] **[Refactor your code]**
