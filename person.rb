@@ -1,4 +1,6 @@
-class Person
+require './nameable.rb'
+
+class Person < Nameable
   attr_reader :id
   attr_accessor :name, :age, :parent_permission
 
@@ -7,6 +9,10 @@ class Person
     @name = name
     @age = age.to_i
     @parent_permission = parent_permission
+  end
+
+  def correct_name
+    @name
   end
 
   private
@@ -27,3 +33,6 @@ puts person1.can_use_services?
 
 person2 = Person.new(48, name: 'David')
 puts person2.can_use_services?
+
+puts person1.correct_name
+puts person2.correct_name
