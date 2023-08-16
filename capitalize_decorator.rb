@@ -5,3 +5,4 @@ class CapitalizeDecorator < BaseDecorator
     original_name = @nameable.correct_name
     original_name.capitalize
   end
+end

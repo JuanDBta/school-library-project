@@ -2,7 +2,7 @@ require './nameable'
 
 class BaseDecorator < Nameable
   def initialize(nameable)
-    super
+    super()
     @nameable = nameable
   end
 
