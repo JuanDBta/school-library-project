@@ -25,7 +25,7 @@ class App
     if @books.empty?
       puts 'There are no books available'
     else
-      @books.each do |_book|
+      @books.each do |book|
         puts 'This is the list of books available:'
         puts "- #{book.title} by #{book.author}"
       end
@@ -76,7 +76,7 @@ class App
       person_id = gets.chomp.to_i
       get_rental = @rentals.select { |rental| rental.person.id == person_id }
       if get_rental.empty?
-        puts 'No rental matched with your ID'
+        puts 'No rentals matched with your ID'
       else
         puts "The rentals for ID #{person_id}:"
         get_rental.each do |rental|
