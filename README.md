@@ -62,6 +62,8 @@
 - **[Added student.rb]**
 - **[Added teacher.rb]**
 - **[Used the "Decorator" design pattern]**
+- **[Set up associations]**
+- **[Added basic UI]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -111,9 +113,7 @@ You can deploy this project using:<br>[Coming Soon!!!](https://github.com/JuanDB
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Set up associations]**
-- [ ] **[Add basic UI]**
-- [ ] **[Refactor your code]**
+- [ ] **[Refactor code]**
 - [ ] **[Preserve data]**
 - [ ] **[Unit tests]**
 
