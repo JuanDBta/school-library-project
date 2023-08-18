@@ -47,18 +47,42 @@ class App
     classroom = Classroom.new(classroom_name)
     student = Student.new(age, classroom, name, parent_permission)
     @people << student
-    puts "#{student.name} has created successfully"
+    puts "#{student.name} has been created successfully"
   end
 
   def create_teacher(age, specialization, name)
     teacher = Teacher.new(age, specialization, name)
     @people << teacher
-    puts "#{teacher.name} has created successfully"
+    puts "#{teacher.name} has been created successfully"
   end
 
   def create_book(title, author)
     book = Book.new(title, author)
     @books << book
-    puts "#{book.title} has created successfully"
+    puts "#{book.title} has been created successfully"
+  end
+
+  def create_rental(date, book, person)
+    rental = Rental.new(date, book, person)
+    @rentals << rental
+    puts "Rental on #{rental.date} has been created successfully"
+  end
+
+  def list_rentals()
+    if @rentals.empty?
+      puts 'There are no rentals available'
+    else
+      puts 'Please enter ID:'
+      person_id = gets.chomp.to_i
+      get_rental = @rentals.select { |rental| rental.person.id == person_id }
+      if get_rental.empty?
+        puts 'No rental matched with your ID'
+      else
+        puts "The rentals for ID #{person_id}:"
+        get_rental.each do |rental|
+          puts "- Date: #{rental.date}, #{rental.book.title} by #{rental.book.author}"
+        end
+      end
+    end
   end
 end
