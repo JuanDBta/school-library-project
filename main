@@ -2,6 +2,10 @@
 require './app'
 @app = App.new
 
+puts 'Welcome to Microverse School Library'
+puts 'Please enter the number of the option below:'
+puts
+
 def create_student
   print 'Enter your name: '
   name = gets.chomp
@@ -10,7 +14,7 @@ def create_student
   print 'Enter your classroom: '
   classroom_name = gets.chomp
   print 'Do you have permission from your parents? [Y/N]: '
-    permission = gets.chomp.downcase
+  permission = gets.chomp.downcase
   if permission == 'y'
     parent_permission = true
   elsif permissions == 'n'
@@ -27,7 +31,7 @@ def create_teacher
   print 'Enter your age: '
   age = gets.chomp
   print 'Enter your specialization: '
-  spec = gets.chomp
+  gets.chomp
   @app.create_teacher(age, specialization, name)
 end
 
@@ -41,11 +45,11 @@ end
 
 def create_rental
   puts 'Enter the book´s title from the following list:'
-  @app.list_books()
+  @app.list_books
   book = gets.chomp
 
   puts 'Enter a name from the following list: '
-  @app.list_people()
+  @app.list_people
   person = gets.chomp
 
   print 'Enter the date: '
