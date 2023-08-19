@@ -26,8 +26,8 @@ class App
     if @books.empty?
       puts 'There are no books available'
     else
+      puts 'This is the list of books available:'
       @books.each do |book|
-        puts 'This is the list of books available:'
         puts "- #{book.title} by #{book.author}"
       end
     end
@@ -59,8 +59,9 @@ class App
 
   def create_book(title, author)
     book = Book.new(title, author)
-    @books << book
     puts "#{book.title} has been created successfully"
+    @books << book
+    
   end
 
   def create_rental(date, book, person)

@@ -68,32 +68,25 @@ def main
 
   when '2'
     @app.list_people
-    main
-
   when '3'
     puts 'To create a Student (Enter 1), to create a Teacher (Enter 2):'
     input = gets.chomp
     if input == '1'
       create_student
-      main
     elsif input == '2'
       create_teacher
-      main
     else
       puts 'Invalid input'
     end
 
   when '4'
     create_book
-    main
 
   when '5'
     create_rental
-    main
 
   when '6'
     @app.list_rentals
-    main
 
   when '7'
     puts 'Goodbye!!!'
