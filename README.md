@@ -101,7 +101,7 @@ Go to your /school-library-project folder:
 
 ```sh
   cd school-library-project
-  main
+  ruby main.rb
 ```
 
 ### Deployment
