@@ -12,6 +12,7 @@ class App
   end
 
   def options
+    puts 'Please enter the number of the option:'
     puts '1 - List all books'
     puts '2 - List all people'
     puts '3 - Create a person'
@@ -43,9 +44,9 @@ class App
     end
   end
 
-  def create_student(name, age, classroom_name, parent_permission)
-    classroom = Classroom.new(classroom_name)
-    student = Student.new(age, classroom, name, parent_permission)
+  def create_student(age, name, permission)
+    student = Student.new(age, name, permission)
+    classroom = Classroom.new('A')
     @people << student
     puts "#{student.name} has been created successfully"
   end
