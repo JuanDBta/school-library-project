@@ -45,17 +45,17 @@ def create_book
 end
 
 def create_rental
-  puts 'Enter the book´s title from the following list:'
+  puts 'Enter a Book´s title from the following list:'
   @app.list_books
-  book = gets.chomp
+  book_title = gets.chomp
 
-  puts 'Enter a name from the following list: '
+  puts 'Enter a Person name from the following list: '
   @app.list_people
-  person = gets.chomp
+  person_name = gets.chomp
 
   print 'Enter the date: '
   date = gets.chomp
-  @app.create_rental(person, book, date)
+  @app.create_rental(date, book_title, person_name)
 end
 
 def main
