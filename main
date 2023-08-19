@@ -30,7 +30,7 @@ def create_teacher
   print 'Enter your age: '
   age = gets.chomp
   print 'Enter your specialization: '
-  gets.chomp
+  specialization = gets.chomp
   @app.create_teacher(age, specialization, name)
 end
 
