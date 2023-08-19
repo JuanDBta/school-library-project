@@ -31,23 +31,9 @@ class Person < Nameable
     of_age? || @parent_permission
   end
 
-  def add_rental(book, date)
+  def add_rental(date, book)
     Rental.new(date, book, self)
+    @rentals << rental
+    rental
   end
 end
-
-person1 = Person.new(15, name: 'Juan', parent_permission: false)
-puts person1.can_use_services?
-
-person2 = Person.new(48, name: 'David')
-puts person2.can_use_services?
-
-puts person1.correct_name
-puts person2.correct_name
-
-person3 = Person.new(22, name: 'maximilianus')
-person3.correct_name
-capitalized_person3 = CapitalizeDecorator.new(person3)
-puts capitalized_person3.correct_name
-capitalized_trimmed_person3 = TrimmerDecorator.new(capitalized_person3)
-puts capitalized_trimmed_person3.correct_name
