@@ -46,7 +46,7 @@ class App
 
   def create_student(age, label, parent_permission, name)
     classroom = Classroom.new(label)
-    student = Student.new(age, classroom, parent_permission:, name: name)
+    student = Student.new(age, classroom, parent_permission: parent_permission, name: name)
     @people << student
     puts "#{student.name} has been created successfully"
   end
