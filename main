@@ -21,7 +21,7 @@ def create_student
   else
     puts 'Invalid input'
   end
-  @app.create_student(name, age, permission)
+  @app.create_student(age, permission, name)
 end
 
 def create_teacher
@@ -96,7 +96,7 @@ def main
     main
 
   when '7'
-    puts 'Goodbye, have a nice day!'
+    puts 'Goodbye!!!'
     exit
     break
 

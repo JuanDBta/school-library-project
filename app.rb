@@ -38,14 +38,14 @@ class App
       puts 'There are no people available'
     else
       puts 'This is the list of all people:'
-      @people.each do |_person|
+      @people.each do |person|
         puts "- #{person.name} has #{person.age} years and Id #{person.id}"
       end
     end
   end
 
-  def create_student(age, name, permission)
-    student = Student.new(age, name, permission)
+  def create_student(age, permission, name)
+    student = Student.new(age, permission, name)
     classroom = Classroom.new('A')
     @people << student
     puts "#{student.name} has been created successfully"
