@@ -93,7 +93,7 @@ class App
       else
         puts "The rentals for ID #{person_id}:"
         get_rental.each do |rental|
-          puts "- Date: #{rental.date}, #{rental.book} by #{rental.person}"
+          puts "- On #{rental.date}, #{rental.person.name} rented #{rental.book.title}"
         end
       end
     end
