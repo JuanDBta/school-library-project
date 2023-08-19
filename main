@@ -23,7 +23,7 @@ def create_student
   else
     puts 'Invalid input'
   end
-  @app.create_student(age, label, name, parent_permission)
+  @app.create_student(age, label, parent_permission, name)
 end
 
 def create_teacher
