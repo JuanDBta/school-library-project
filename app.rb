@@ -65,9 +65,20 @@ class App
   end
 
   def create_rental(date, book, person)
-    rental = Rental.new(date, book, person)
-    @rentals << rental
-    puts "Rental on #{rental.date} has been created successfully"
+    book = @books.find { |b| b.title == book_title }
+  person = @people.find { |p| p.name == person_name }
+
+  if book.nil? || person.nil?
+    puts "Book or person not found"
+    return
+  end
+
+  rental = Rental.new(date, book, person)
+  book.add_rental(rental)
+  person.rentals << rental
+  @rentals << rental
+
+  puts "Rental on #{rental.date} has been created successfully"
   end
 
   def list_rentals()
