@@ -12,16 +12,18 @@ def create_student
   name = gets.chomp
   print 'Enter your age: '
   age = gets.chomp
+  print 'Enter your classroom: '
+  label = gets.chomp
   print 'Do you have permission from your parents? [Y/N]: '
-  permissions = gets.chomp.downcase
-  if permissions == 'y'
-    permission = true
-  elsif permissions == 'n'
-    permission = false
+  permission = gets.chomp.downcase
+  if permission == 'y'
+    parent_permission = true
+  elsif permission == 'n'
+    parent_permission = false
   else
     puts 'Invalid input'
   end
-  @app.create_student(age, permission, name)
+  @app.create_student(age, label, name, parent_permission)
 end
 
 def create_teacher

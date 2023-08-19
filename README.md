@@ -95,6 +95,15 @@ Clone this repository to your desired folder:
   cd my-folder
   git clone "https://github.com/JuanDBta/school-library-project.git"
 ```
+### Run
+
+Go to your /school-library-project folder:
+
+```sh
+  cd school-library-project
+  main
+```
+
 ### Deployment
 
 You can deploy this project using:<br>[Coming Soon!!!](https://github.com/JuanDBta/school-library-project)
