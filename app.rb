@@ -46,13 +46,13 @@ class App
 
   def create_student(age, label, parent_permission, name)
     classroom = Classroom.new(label)
-    student = Student.new(age, classroom, parent_permission: parent_permission, name: name)
+    student = Student.new(age, classroom, parent_permission:, name:)
     @people << student
     puts "#{student.name} has been created successfully"
   end
 
   def create_teacher(age, specialization, name)
-    teacher = Teacher.new(age, specialization, name: name)
+    teacher = Teacher.new(age, specialization, name:)
     @people << teacher
     puts "#{teacher.name} has been created successfully"
   end
@@ -61,23 +61,22 @@ class App
     book = Book.new(title, author)
     puts "#{book.title} has been created successfully"
     @books << book
-    
   end
 
   def create_rental(date, book_title, person_name)
     book = @books.find { |b| b.title == book_title }
     person = @people.find { |p| p.name == person_name }
-  
+
     if book.nil? || person.nil?
-      puts "Book or person not found"
+      puts 'Book or person not found'
       return
     end
-  
+
     rental = Rental.new(date, book, person)
     book.add_rental(date, person)
     person.rentals << rental
     @rentals << rental
-  
+
     puts "Rental on #{rental.date} has been created successfully"
   end
 
