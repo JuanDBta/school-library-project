@@ -52,7 +52,7 @@ class App
   end
 
   def create_teacher(age, specialization, name)
-    teacher = Teacher.new(age, specialization, name)
+    teacher = Teacher.new(age, specialization, name: name)
     @people << teacher
     puts "#{teacher.name} has been created successfully"
   end
