@@ -25,6 +25,7 @@ class App
   end
 
   def list_books
+    load_books_data
     if @books.empty?
       puts 'There are no books available'
     else
@@ -36,6 +37,7 @@ class App
   end
 
   def list_people
+    load_people_data
     if @people.empty?
       puts 'There are no people available'
     else
@@ -50,21 +52,24 @@ class App
     classroom = Classroom.new(label)
     student = Student.new(age, classroom, parent_permission: parent_permission, name: name)
     @people << student
+    save_people_data
     puts "Student #{student.name} created !"
   end
 
   def create_teacher(age, specialization, name)
     teacher = Teacher.new(age, specialization, name: name)
     @people << teacher
+    save_people_data
     puts "Teacher #{teacher.name} created !"
     options
   end
 
   def create_book(title, author)
     book = Book.new(title, author)
+    @books << book
+    save_books_data
     puts "The book #{book.title} has been created !"
     options
-    @books << book
   end
 
   def check_rental_availability
@@ -89,7 +94,7 @@ class App
     book.add_rental(date, person)
     person.rentals << rental
     @rentals << rental
-
+    save_rentals_data
     puts "Rental on #{rental.date} has been created !"
     options
   end
@@ -103,6 +108,7 @@ class App
   end
 
   def list_rentals()
+    load_rentals_data
     puts 'Please enter ID:'
     person_id = gets.chomp.to_i
     get_rental = @rentals.select { |rental| rental.person.id == person_id }
@@ -122,11 +128,13 @@ class App
   def save_books_data
     File.open('books.json', 'w') { |file| file.write(JSON.generate(@books)) }
   
-  books_data = @books.map do |book|
-    {
-      'title' => book.title,
-      'author' => book.author,
-    }
+    books_data = @books.map do |book|
+      {
+        'title' => book.title,
+        'author' => book.author,
+      }
+    end
+    File.open('books.json', 'w') { |file| file.write(JSON.generate(books_data)) }
   end
 
   def save_people_data
@@ -139,8 +147,10 @@ class App
         'parent_permission' => person.parent_permission,
       }
     end
+    File.open('people.json', 'w') { |file| file.write(JSON.generate(people_data)) }
+  end
 
-    def save_rentals_data
+  def save_rentals_data
     File.open('rentals.json', 'w') { |file| file.write(JSON.generate(@rentals)) }
     rentals_data = @rentals.map do |rental|
       {
@@ -149,6 +159,7 @@ class App
         'title' => rental.books.title,
       }
     end
+    File.open('rentals.json', 'w') { |file| file.write(JSON.generate(rentals_data)) }
   end
 
   def load_books_data
@@ -156,14 +167,16 @@ class App
       books_data = File.read('books.json')
       @books = JSON.parse(books_data) unless books_data.empty? || books_data.nil?
     end
+  end
 
-    def load_people_data
+  def load_people_data
     if File.exist?('people.json')
       people_data = File.read('people.json')
       @people = JSON.parse(people_data) unless people_data.empty? || people_data.nil?
     end
+  end
 
-    def load_rentals_data
+  def load_rentals_data
     if File.exist?('rentals.json')
       rentals_data = File.read('rentals.json')
       @rentals = JSON.parse(rentals_data) unless rentals_data.empty? || rentals_data.nil?

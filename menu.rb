@@ -4,15 +4,7 @@ class Menu
   def initialize
     @app = App.new
   end
-
-  def save_data
-    @app.save_data
-  end
-
-  def load_data
-    @app.load_data
-  end
-
+  
   def title
     puts
     puts 'Welcome to Microverse School Library!!!'
