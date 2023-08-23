@@ -80,6 +80,10 @@ class Menu
   end
 
   def list_rentals
+    if @app.rentals_availability === false
+      puts 'No rentals available'
+    else
     @app.list_rentals
+    end
   end
 end

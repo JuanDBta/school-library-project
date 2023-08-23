@@ -92,24 +92,29 @@ class App
     options
   end
 
-  def list_rentals()
+  def rentals_availability
     if @rentals.empty?
-      puts 'There are no rentals available'
-      options
+      false
     else
-      puts 'Please enter ID:'
-      person_id = gets.chomp.to_i
-      get_rental = @rentals.select { |rental| rental.person.id == person_id }
-      if get_rental.empty?
-        puts 'No rentals matched with your ID'
-        options
-      else
-        puts "The rentals for ID #{person_id}:"
-        get_rental.each do |rental|
-          puts "- On #{rental.date}, #{rental.person.name} rented #{rental.book.title}"
-          options
-        end
-      end
+      true
     end
   end
+
+  def list_rentals()
+    puts 'Please enter ID:'
+    person_id = gets.chomp.to_i
+    get_rental = @rentals.select { |rental| rental.person.id == person_id }
+    
+    if get_rental.empty?
+      puts 'No rentals matched with your ID'
+      options
+    else
+      puts "The rentals for ID #{person_id}:"
+      get_rental.each do |rental|
+        puts "- On #{rental.date}, #{rental.person.name} rented #{rental.book.title}"
+      end
+      options
+    end
+  end
+  
 end
