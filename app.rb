@@ -23,15 +23,14 @@ class App
   end
 
   def list_books
-    if !@books.empty?
+    if @books.empty?
+      puts 'There are no books available'
+    else
       puts 'List of available books:'
       @books.each do |book|
         puts "- #{book.title} by #{book.author}"
       end
-    else
-      puts 'There are no books available'
     end
-    
   end
 
   def list_people
