@@ -64,6 +64,7 @@
 - **[Used the "Decorator" design pattern]**
 - **[Set up associations]**
 - **[Added basic UI]**
+- **[Refactor code]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -118,11 +119,15 @@ You can deploy this project using:<br>[Coming Soon!!!](https://github.com/JuanDB
 - Twitter: [@simplebetsas](https://twitter.com/simplebetsas)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/simplebet/)
 
+👤 **Micronaut Daniel Ochuba Ugochukwu**
+
+- GitHub: [@danielochuba](https://github.com/danielochuba)
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Refactor code]**
 - [ ] **[Preserve data]**
 - [ ] **[Unit tests]**
 
@@ -150,13 +155,17 @@ I would like to thank Bee in Student Success who is always avalaible to solve is
 
 ## ❓ FAQ <a name="faq"></a>
 
-- **["How can I see more projects associated with this author?"]**
+- **["How can I see more projects associated with these authors?"]**
 
-  - Check my [GitHub profile](https://github.com/JuanDBta)
+  - Check my [@JuanDBta](https://github.com/JuanDBta)
+   - Check my [@danielochuba](https://github.com/danielochuba)
 
-- **[How can I contact the author of this project?]**
+- **[How can I contact the authors of this project?]**
 
   - Check my [LinkedIn profile](https://linkedin.com/in/simplebet/) or email me at simplebetsas@gmail.com
+  - Email me at danielochuba78@gmail.com
+
+  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

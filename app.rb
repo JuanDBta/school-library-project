@@ -26,7 +26,7 @@ class App
     if @books.empty?
       puts 'There are no books available'
     else
-      puts 'This is the list of books available:'
+      puts 'List of available books:'
       @books.each do |book|
         puts "- #{book.title} by #{book.author}"
       end
@@ -37,9 +37,9 @@ class App
     if @people.empty?
       puts 'There are no people available'
     else
-      puts 'This is the list of all people:'
+      puts 'List of all available people:'
       @people.each do |person|
-        puts "- #{person.name} has #{person.age} years and Id #{person.id}"
+        puts "- NAME: #{person.name}, AGE: #{person.age} years, ID: #{person.id}"
       end
     end
   end
@@ -48,18 +48,20 @@ class App
     classroom = Classroom.new(label)
     student = Student.new(age, classroom, parent_permission: parent_permission, name: name)
     @people << student
-    puts "#{student.name} has been created successfully"
+    puts "Student #{student.name} created !"
   end
 
   def create_teacher(age, specialization, name)
     teacher = Teacher.new(age, specialization, name: name)
     @people << teacher
-    puts "#{teacher.name} has been created successfully"
+    puts "Teacher #{teacher.name} created !"
+    options
   end
 
   def create_book(title, author)
     book = Book.new(title, author)
-    puts "#{book.title} has been created successfully"
+    puts "The book #{book.title} has been created !"
+    options
     @books << book
   end
 
@@ -69,6 +71,7 @@ class App
 
     if book.nil? || person.nil?
       puts 'Book or person not found'
+      options
       return
     end
 
@@ -77,22 +80,26 @@ class App
     person.rentals << rental
     @rentals << rental
 
-    puts "Rental on #{rental.date} has been created successfully"
+    puts "Rental on #{rental.date} has been created !"
+    options
   end
 
   def list_rentals()
     if @rentals.empty?
       puts 'There are no rentals available'
+      options
     else
       puts 'Please enter ID:'
       person_id = gets.chomp.to_i
       get_rental = @rentals.select { |rental| rental.person.id == person_id }
       if get_rental.empty?
         puts 'No rentals matched with your ID'
+        options
       else
         puts "The rentals for ID #{person_id}:"
         get_rental.each do |rental|
           puts "- On #{rental.date}, #{rental.person.name} rented #{rental.book.title}"
+          options
         end
       end
     end
