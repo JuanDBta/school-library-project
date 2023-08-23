@@ -62,6 +62,7 @@ class Menu
   end
 
   def create_rental
+    if @app.check_rental_availability === true
     puts 'To create a rental enter a Book title from the list'
     @app.list_books
     book_title = gets.chomp
@@ -73,6 +74,9 @@ class Menu
     print 'Enter the date: '
     date = gets.chomp
     @app.create_rental(date, book_title, person_name)
+    else
+      puts 'No books or person available to rent'
+    end
   end
 
   def list_rentals

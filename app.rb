@@ -65,6 +65,14 @@ class App
     @books << book
   end
 
+  def check_rental_availability
+    if @books.empty? || @people.empty?
+      false
+    else
+      true
+    end
+  end
+
   def create_rental(date, book_title, person_name)
     book = @books.find { |b| b.title == book_title }
     person = @people.find { |p| p.name == person_name }
