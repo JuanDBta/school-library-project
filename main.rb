@@ -4,9 +4,10 @@ require './menu'
 def main
   @menu = Menu.new
   @menu.title
-  @menu.options
+ 
 
   loop do
+    @menu.options
     input = gets.chomp
     case input
     when '1'

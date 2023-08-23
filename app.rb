@@ -12,16 +12,15 @@ class App
   end
 
   def list_books
-    if @books.empty?
-      puts 'There are no books available'
-      puts 'Enter a Menu option: '
-    else
+    if !@books.empty?
       puts 'List of available books:'
       @books.each do |book|
         puts "- #{book.title} by #{book.author}"
       end
-      puts 'Enter a Menu option: '
+    else
+      print 'There are no books available'
     end
+    
   end
 
   def list_people
@@ -31,7 +30,7 @@ class App
     else
       puts 'List of all available people:'
       @people.each do |person|
-        puts "- #{person.name} has #{person.age} years and Id #{person.id}"
+        puts "- NAME: #{person.name}, AGE: #{person.age} years, ID: #{person.id}"
       end
       puts 'Enter a Menu option: '
     end
@@ -41,20 +40,20 @@ class App
     classroom = Classroom.new(label)
     student = Student.new(age, classroom, parent_permission: parent_permission, name: name)
     @people << student
-    puts "Student #{student.name} has been created successfully"
+    puts "Student #{student.name} created !"
     puts 'Enter a Menu option:'
   end
 
   def create_teacher(age, specialization, name)
     teacher = Teacher.new(age, specialization, name: name)
     @people << teacher
-    puts "Teacher #{teacher.name} has been created successfully"
+    puts "Teacher #{teacher.name} created !"
     puts 'Enter a Menu option:'
   end
 
   def create_book(title, author)
     book = Book.new(title, author)
-    puts "The book #{book.title} has been created successfully"
+    puts "The book #{book.title} has been created !"
     puts 'Enter a Menu option:'
     @books << book
   end
@@ -74,7 +73,7 @@ class App
     person.rentals << rental
     @rentals << rental
 
-    puts "Rental on #{rental.date} has been created successfully"
+    puts "Rental on #{rental.date} has been created !"
     puts 'Enter a Menu option:'
   end
 

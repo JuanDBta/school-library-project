@@ -7,6 +7,7 @@ class Menu
     end
 
     def title
+        puts
         puts 'Welcome to Microverse School Library!!!'
         puts
       end
@@ -31,11 +32,11 @@ class Menu
       end
       
       def create_student
-        print 'Enter your name: '
+        print 'Enter Student name: '
         name = gets.chomp
-        print 'Enter your age: '
+        print 'Enter Student age: '
         age = gets.chomp
-        print 'Enter your classroom: '
+        print 'Enter Student classroom: '
         label = gets.chomp
         print 'Do you have permission from your parents? [Y/N]: '
         permission = gets.chomp.downcase
@@ -51,9 +52,9 @@ class Menu
       end
       
       def create_teacher
-        print 'Enter your name: '
+        print 'Enter Teacher name: '
         name = gets.chomp
-        print 'Enter your age: '
+        print 'Enter Teacher age: '
         age = gets.chomp
         print 'Enter your specialization: '
         specialization = gets.chomp
