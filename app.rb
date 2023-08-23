@@ -137,7 +137,7 @@ class App
     File.open('books.json', 'w') { |file| file.write(JSON.generate(books_data)) }
   end
 
-  def save_people_data
+  def save_people_data(name, age, has_permission, )
     # File.open('people.json', 'w') { |file| file.write(JSON.generate(@people)) }
     # people_data = @people.map do |person|
     #   {
