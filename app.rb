@@ -6,6 +6,7 @@ require './book'
 require './rental'
 
 class App
+  attr_accessor :people, :books, :rentals
   def initialize
     @people = []
     @books = []
@@ -120,14 +121,49 @@ class App
 
   def save_data
     File.open('books.json', 'w') { |file| file.write(JSON.generate(@books)) }
+  
+  books_data = @books.map do |book|
+    {
+      'title' => book.title,
+      'author' => book.author,
+    }
+  end
+
     File.open('people.json', 'w') { |file| file.write(JSON.generate(@people)) }
+    people_data = @people.map do |person|
+      {
+        'id' => person.id,
+        'name' => person.name,
+        'age' => person.age,
+        'parent_permission' => person.parent_permission,
+        'specialization' => person.specialization,
+      }
+    end
+
     File.open('rentals.json', 'w') { |file| file.write(JSON.generate(@rentals)) }
+    rentals_data = @rentals.map do |rental|
+      {
+        'date' => rental.date,
+        'name' => rental.person.name,
+        'title' => rental.books.title,
+      }
+    end
   end
 
   def load_data
-    @books = JSON.parse(File.read('books.json')) if File.exist?('books.json')
-    @people = JSON.parse(File.read('people.json')) if File.exist?('people.json')
-    @rentals = JSON.parse(File.read('rentals.json')) if File.exist?('rentals.json')
-  end
-  
+    if File.exist?('books.json')
+      books_data = File.read('books.json')
+      @books = JSON.parse(books_data) unless books_data.empty? || books_data.nil?
+    end
+
+    if File.exist?('people.json')
+      people_data = File.read('people.json')
+      @people = JSON.parse(people_data) unless people_data.empty? || people_data.nil?
+    end
+
+    if File.exist?('rentals.json')
+      rentals_data = File.read('rentals.json')
+      @rentals = JSON.parse(rentals_data) unless rentals_data.empty? || rentals_data.nil?
+    end
+  end  
 end
