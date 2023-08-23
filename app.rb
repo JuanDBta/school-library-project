@@ -11,6 +11,17 @@ class App
     @rentals = []
   end
 
+  def options
+    puts 'Please enter the number of the option:'
+    puts '1 - List all books'
+    puts '2 - List all people'
+    puts '3 - Create a person'
+    puts '4 - Create a book'
+    puts '5 - Create a rental'
+    puts '6 - List all rentals for a given person id'
+    puts '7 - Exit'
+  end
+
   def list_books
     if !@books.empty?
       puts 'List of available books:'
@@ -18,7 +29,7 @@ class App
         puts "- #{book.title} by #{book.author}"
       end
     else
-      print 'There are no books available'
+      puts 'There are no books available'
     end
     
   end
@@ -26,13 +37,11 @@ class App
   def list_people
     if @people.empty?
       puts 'There are no people available'
-      puts 'Enter a Menu option: '
     else
       puts 'List of all available people:'
       @people.each do |person|
         puts "- NAME: #{person.name}, AGE: #{person.age} years, ID: #{person.id}"
       end
-      puts 'Enter a Menu option: '
     end
   end
 
@@ -41,20 +50,19 @@ class App
     student = Student.new(age, classroom, parent_permission: parent_permission, name: name)
     @people << student
     puts "Student #{student.name} created !"
-    puts 'Enter a Menu option:'
   end
 
   def create_teacher(age, specialization, name)
     teacher = Teacher.new(age, specialization, name: name)
     @people << teacher
     puts "Teacher #{teacher.name} created !"
-    puts 'Enter a Menu option:'
+    options
   end
 
   def create_book(title, author)
     book = Book.new(title, author)
     puts "The book #{book.title} has been created !"
-    puts 'Enter a Menu option:'
+    options
     @books << book
   end
 
@@ -64,7 +72,7 @@ class App
 
     if book.nil? || person.nil?
       puts 'Book or person not found'
-      puts 'Enter a Menu option: '
+      options
       return
     end
 
@@ -74,25 +82,25 @@ class App
     @rentals << rental
 
     puts "Rental on #{rental.date} has been created !"
-    puts 'Enter a Menu option:'
+    options
   end
 
   def list_rentals()
     if @rentals.empty?
       puts 'There are no rentals available'
-      puts 'Enter a Menu option: '
+      options
     else
       puts 'Please enter ID:'
       person_id = gets.chomp.to_i
       get_rental = @rentals.select { |rental| rental.person.id == person_id }
       if get_rental.empty?
         puts 'No rentals matched with your ID'
-        puts 'Enter a Menu option: '
+        options
       else
         puts "The rentals for ID #{person_id}:"
         get_rental.each do |rental|
           puts "- On #{rental.date}, #{rental.person.name} rented #{rental.book.title}"
-          puts 'Enter a Menu option:'
+          options
         end
       end
     end
