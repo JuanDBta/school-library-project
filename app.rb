@@ -119,7 +119,7 @@ class App
     end
   end
 
-  def save_data
+  def save_books_data
     File.open('books.json', 'w') { |file| file.write(JSON.generate(@books)) }
   
   books_data = @books.map do |book|
@@ -129,6 +129,7 @@ class App
     }
   end
 
+  def save_people_data
     File.open('people.json', 'w') { |file| file.write(JSON.generate(@people)) }
     people_data = @people.map do |person|
       {
@@ -136,10 +137,10 @@ class App
         'name' => person.name,
         'age' => person.age,
         'parent_permission' => person.parent_permission,
-        'specialization' => person.specialization,
       }
     end
 
+    def save_rentals_data
     File.open('rentals.json', 'w') { |file| file.write(JSON.generate(@rentals)) }
     rentals_data = @rentals.map do |rental|
       {
@@ -150,17 +151,19 @@ class App
     end
   end
 
-  def load_data
+  def load_books_data
     if File.exist?('books.json')
       books_data = File.read('books.json')
       @books = JSON.parse(books_data) unless books_data.empty? || books_data.nil?
     end
 
+    def load_people_data
     if File.exist?('people.json')
       people_data = File.read('people.json')
       @people = JSON.parse(people_data) unless people_data.empty? || people_data.nil?
     end
 
+    def load_rentals_data
     if File.exist?('rentals.json')
       rentals_data = File.read('rentals.json')
       @rentals = JSON.parse(rentals_data) unless rentals_data.empty? || rentals_data.nil?
