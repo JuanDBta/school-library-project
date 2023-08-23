@@ -1,9 +1,8 @@
 #!/usr/bin/env ruby
 require './menu'
-@menu = Menu.new
-
 
 def main
+  @menu = Menu.new
   @menu.title
   @menu.options
 
@@ -11,29 +10,29 @@ def main
     input = gets.chomp
     case input
     when '1'
-      @app.list_books
+      @menu.list_books
 
     when '2'
-      @app.list_people
+      @menu.list_people
     when '3'
       puts 'To create a Student (Enter 1), to create a Teacher (Enter 2):'
       input = gets.chomp
       if input == '1'
-        create_student
+        @menu.create_student
       elsif input == '2'
-        create_teacher
+        @menu.create_teacher
       else
         puts 'Invalid input'
       end
 
     when '4'
-      create_book
+      @menu.create_book
 
     when '5'
-      create_rental
+      @menu.create_rental
 
     when '6'
-      @app.list_rentals
+      @menu.list_rentals
 
     when '7'
       puts 'Goodbye!!!'

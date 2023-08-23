@@ -10,6 +10,25 @@ class Menu
         puts 'Welcome to Microverse School Library!!!'
         puts
       end
+
+      def options
+        puts 'Please enter the number of the option:'
+        puts '1 - List all books'
+        puts '2 - List all people'
+        puts '3 - Create a person'
+        puts '4 - Create a book'
+        puts '5 - Create a rental'
+        puts '6 - List all rentals for a given person id'
+        puts '7 - Exit'
+      end
+
+      def list_books
+        @app.list_books
+      end
+
+      def list_people
+        @app.list_people
+      end
       
       def create_student
         print 'Enter your name: '
@@ -49,17 +68,21 @@ class Menu
       end
       
       def create_rental
-        puts 'Enter a Book´s title from the following list:'
+        puts 'Enter a Book´s title from the list'
         @app.list_books
         book_title = gets.chomp
       
-        puts 'Enter a Person name from the following list: '
+        puts 'Enter a Person name from the list'
         @app.list_people
         person_name = gets.chomp
       
         print 'Enter the date: '
         date = gets.chomp
         @app.create_rental(date, book_title, person_name)
+      end
+
+      def list_rentals
+        @app.list_rentals()
       end
     end
       
