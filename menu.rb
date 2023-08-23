@@ -45,6 +45,7 @@ class Menu
           parent_permission = false
         else
           puts 'Invalid input'
+          puts 'Enter an option: '
         end
         @app.create_student(age, label, parent_permission, name)
       end
@@ -68,11 +69,11 @@ class Menu
       end
       
       def create_rental
-        puts 'Enter a Book´s title from the list'
+        puts 'To create a rental enter a Book title from the list'
         @app.list_books
         book_title = gets.chomp
       
-        puts 'Enter a Person name from the list'
+        puts 'To create a rental enter a Person name from the list'
         @app.list_people
         person_name = gets.chomp
       
