@@ -45,7 +45,7 @@ class Menu
           parent_permission = false
         else
           puts 'Invalid input'
-          puts 'Enter an option: '
+          puts 'Enter a Menu option: '
         end
         @app.create_student(age, label, parent_permission, name)
       end
