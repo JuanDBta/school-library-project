@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 require './menu'
+require './app'
 
 def main
   @menu = Menu.new
-  @menu.title
+  @menu.load_data
 
   loop do
     @menu.options
@@ -35,6 +36,7 @@ def main
       @menu.list_rentals
 
     when '7'
+      @menu.save_data
       puts 'Goodbye!!!'
       exit
 
