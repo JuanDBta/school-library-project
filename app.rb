@@ -31,7 +31,7 @@ class App
     else
       puts 'List of available books:'
       @books.each do |book|
-        puts "- #{book.title} by #{book.author}"
+        puts "- #{book['title']} by #{book['author']}"
       end
     end
   end
@@ -43,7 +43,7 @@ class App
     else
       puts 'List of all available people:'
       @people.each do |person|
-        puts "- NAME: #{person.name}, AGE: #{person.age} years, ID: #{person.id}"
+        puts "- NAME: #{person['name']}, AGE: #{person['age']} years, ID: #{person['id']}"
       end
     end
   end
@@ -111,7 +111,7 @@ class App
     load_rentals_data
     puts 'Please enter ID:'
     person_id = gets.chomp.to_i
-    get_rental = @rentals.select { |rental| rental.person.id == person_id }
+    get_rental = @rentals.select { |rental| rental['id'] == person_id }
     
     if get_rental.empty?
       puts 'No rentals matched with your ID'
@@ -119,7 +119,7 @@ class App
     else
       puts "The rentals for ID #{person_id}:"
       get_rental.each do |rental|
-        puts "- On #{rental.date}, #{rental.person.name} rented #{rental.book.title}"
+        puts "- On #{rental['date']}, #{rental['name']} rented #{rental['title']}"
       end
       options
     end
@@ -138,16 +138,20 @@ class App
   end
 
   def save_people_data
-    File.open('people.json', 'w') { |file| file.write(JSON.generate(@people)) }
-    people_data = @people.map do |person|
-      {
-        'id' => person.id,
-        'name' => person.name,
-        'age' => person.age,
-        'parent_permission' => person.parent_permission,
-      }
+    # File.open('people.json', 'w') { |file| file.write(JSON.generate(@people)) }
+    # people_data = @people.map do |person|
+    #   {
+    #     'id' => person.id,
+    #     'name' => person.name,
+    #     'age' => person.age,
+    #     'parent_permission' => person.parent_permission,
+    #   }
+    # end
+    # File.open('people.json', 'w') { |file| file.write(JSON.generate(people_data)) }
+
+    File.open('people.json', 'w') do |file| 
+      file.write(JSON.pretty_generate(@people.map(&:to_s)))
     end
-    File.open('people.json', 'w') { |file| file.write(JSON.generate(people_data)) }
   end
 
   def save_rentals_data
