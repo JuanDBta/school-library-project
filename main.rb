@@ -5,7 +5,6 @@ def main
   @menu = Menu.new
   @menu.title
 
-
   loop do
     @menu.options
     input = gets.chomp
