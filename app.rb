@@ -67,7 +67,8 @@ class App
   def create_book(title, author)
     book = Book.new(title, author)
     @books << book
-    books_data = @books.map do |book|
+    current_books_data = load_data('books.json')
+    books_data =current_books_data + @books.map do |book|
       {
         'title' => book.title,
         'author' => book.author,
@@ -100,8 +101,10 @@ class App
       return
     end
 
+    person_id = person['id']
     book_instance = Book.new(book['title'], book['author'])
     person_instance = Person.new(person['age'], name: person['name'], parent_permission: person['parent_permission'])
+    person_instance.id = person_id
 
     rental = Rental.new(date, book_instance, person_instance)
     book_instance.add_rental(date, person_instance)
@@ -113,7 +116,8 @@ class App
   
 
   def rentals_availability
-    if @rentals.empty?
+    rentals_data = load_data('rentals.json')
+    if rentals_data.empty?
       false
     else
       true
@@ -124,14 +128,14 @@ class App
     rentals_data = load_data('rentals.json')
     puts 'Please enter ID:'
     person_id = gets.chomp.to_i
-    get_rental = rentals_data.select { |rental| rental['id'] == person_id }
+    get_rental = rentals_data.select { |rental| rental['person_id'] == person_id }
     
     if get_rental.empty?
       puts 'No rentals matched with your ID'
     else
       puts "The rentals for ID #{person_id}:"
       get_rental.each do |rental|
-        puts "- On #{rental['date']}, #{rental['name']} rented #{rental['title']}"
+        puts "- On #{rental['date']}, #{rental['person_name']} rented #{rental['book_title']}"
       end
     end
   end
@@ -145,7 +149,8 @@ class App
   end
 
   def save_people_data
-    people_data = @people.map do |person|
+    current_people_data = load_data('people.json')
+    people_data = current_people_data + @people.map do |person|
       if person.is_a?(Student)
         {
           'id' => person.id,
@@ -167,11 +172,13 @@ class App
   end
 
   def save_rentals_data
-    rentals_data = @rentals.map do |rental|
+    current_rentals_data = load_data('rentals.json')
+    rentals_data = current_rentals_data + @rentals.map do |rental|
       {
         'date' => rental.date,
         'book_title' => rental.book.title,
-        'person_name' => rental.person.name
+        'person_name' => rental.person.name,
+        'person_id' => rental.person.id,
       }
     end
     save_data('rentals.json', rentals_data)
