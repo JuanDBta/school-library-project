@@ -4,7 +4,7 @@ class Menu
   def initialize
     @app = App.new
   end
-  
+
   def title
     puts
     puts 'Welcome to Microverse School Library!!!'
@@ -63,17 +63,17 @@ class Menu
 
   def create_rental
     if @app.check_rental_availability === true
-    puts 'To create a rental enter a Book title from the list'
-    @app.list_books
-    book_title = gets.chomp
+      puts 'To create a rental enter a Book title from the list'
+      @app.list_books
+      book_title = gets.chomp
 
-    puts 'To create a rental enter a Person name from the list'
-    @app.list_people
-    person_name = gets.chomp
+      puts 'To create a rental enter a Person name from the list'
+      @app.list_people
+      person_name = gets.chomp
 
-    print 'Enter the date: '
-    date = gets.chomp
-    @app.create_rental(date, book_title, person_name)
+      print 'Enter the date: '
+      date = gets.chomp
+      @app.create_rental(date, book_title, person_name)
     else
       puts 'No books or person available to rent'
     end
@@ -83,7 +83,7 @@ class Menu
     if @app.rentals_availability === false
       puts 'No rentals available'
     else
-    @app.list_rentals
+      @app.list_rentals
     end
   end
 end
