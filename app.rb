@@ -79,7 +79,9 @@ class App
   end
 
   def check_rental_availability
-    if @books.empty? || @people.empty?
+    books_data = load_data('books.json')
+    people_data = load_data('people.json')
+    if books_data.empty? || people_data.empty?
       false
     else
       true
@@ -87,20 +89,28 @@ class App
   end
 
   def create_rental(date, book_title, person_name)
-    book = @books.find { |b| b.title == book_title }
-    person = @people.find { |p| p.name == person_name }
-
+    books_data = load_data('books.json')
+    people_data = load_data('people.json')
+    
+    book = books_data.find { |book| book['title'] == book_title }
+    person = people_data.find { |person| person['name'] == person_name }
+  
     if book.nil? || person.nil?
       puts 'Book or person not found'
       return
     end
 
-    rental = Rental.new(date, book, person)
-    book.add_rental(date, person)
-    person.rentals << rental
+    book_instance = Book.new(book['title'], book['author'])
+    person_instance = Person.new(person['age'], name: person['name'], parent_permission: person['parent_permission'])
+
+    rental = Rental.new(date, book_instance, person_instance)
+    book_instance.add_rental(date, person_instance)
+    person_instance.rentals << rental
     @rentals << rental
+    save_rentals_data
     puts "Rental on #{rental.date} has been created !"
   end
+  
 
   def rentals_availability
     if @rentals.empty?
@@ -111,10 +121,10 @@ class App
   end
 
   def list_rentals()
-    load_rentals_data
+    rentals_data = load_data('rentals.json')
     puts 'Please enter ID:'
     person_id = gets.chomp.to_i
-    get_rental = @rentals.select { |rental| rental['id'] == person_id }
+    get_rental = rentals_data.select { |rental| rental['id'] == person_id }
     
     if get_rental.empty?
       puts 'No rentals matched with your ID'
@@ -154,6 +164,17 @@ class App
       end
     end
     save_data('people.json', people_data)
+  end
+
+  def save_rentals_data
+    rentals_data = @rentals.map do |rental|
+      {
+        'date' => rental.date,
+        'book_title' => rental.book.title,
+        'person_name' => rental.person.name
+      }
+    end
+    save_data('rentals.json', rentals_data)
   end
 
   def load_data(filename)
