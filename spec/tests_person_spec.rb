@@ -13,7 +13,7 @@ describe Person do
       expect(person.instance_variable_get(:@parent_permission)).to be(true)
       expect(person.rentals).to be_empty
     end
-  end 
+  end
 
   context 'when checking if a person can use services' do
     it 'returns false without permission' do
@@ -54,8 +54,8 @@ describe Person do
     end
   end
   context 'when adding a rental to a book' do
-    let(:book) { Book.new('A', 'B') } 
-    let(:person) { Person.new(15, name: 'John Doe', parent_permission: true) }  
+    let(:book) { Book.new('A', 'B') }
+    let(:person) { Person.new(15, name: 'John Doe', parent_permission: true) }
     let(:rental) { instance_double('Rental') }
     let(:date) { '01-01-1900' }
 

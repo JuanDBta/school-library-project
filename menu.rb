@@ -62,7 +62,7 @@ class Menu
   end
 
   def create_rental
-    if @app.check_rental_availability === true
+    if @app.check_rental_availability == true
       puts 'To create a rental enter a Book title from the list'
       @app.list_books
       book_title = gets.chomp
@@ -80,7 +80,7 @@ class Menu
   end
 
   def list_rentals
-    if @app.rentals_availability === false
+    if @app.rentals_availability == false
       puts 'No rentals available'
     else
       @app.list_rentals

@@ -7,6 +7,7 @@ require './rental'
 
 class App
   attr_accessor :people, :books, :rentals
+
   def initialize
     @people = []
     @books = []
@@ -52,26 +53,25 @@ class App
     classroom = Classroom.new(label)
     student = Student.new(age, classroom, parent_permission: parent_permission, name: name)
     @people << student
-    save_people_data    
+    save_people_data
     puts "Student #{student.name} created !"
   end
-  
+
   def create_teacher(age, specialization, name)
     teacher = Teacher.new(age, specialization, name: name)
     @people << teacher
     save_people_data
     puts "Teacher #{teacher.name} created !"
   end
-  
 
   def create_book(title, author)
     book = Book.new(title, author)
     @books << book
     current_books_data = load_data('books.json')
-    books_data =current_books_data + @books.map do |book|
+    books_data = current_books_data + @books.map do |book_item|
       {
-        'title' => book.title,
-        'author' => book.author,
+        'title' => book_item.title,
+        'author' => book_item.author
       }
     end
     save_data('books.json', books_data)
@@ -82,20 +82,16 @@ class App
   def check_rental_availability
     books_data = load_data('books.json')
     people_data = load_data('people.json')
-    if books_data.empty? || people_data.empty?
-      false
-    else
-      true
-    end
+    !(books_data.empty? || people_data.empty?)
   end
 
   def create_rental(date, book_title, person_name)
     books_data = load_data('books.json')
     people_data = load_data('people.json')
-    
-    book = books_data.find { |book| book['title'] == book_title }
-    person = people_data.find { |person| person['name'] == person_name }
-  
+
+    book = books_data.find { |book_item| book_item['title'] == book_title }
+    person = people_data.find { |person_data| person_data['name'] == person_name }
+
     if book.nil? || person.nil?
       puts 'Book or person not found'
       return
@@ -113,15 +109,10 @@ class App
     save_rentals_data
     puts "Rental on #{rental.date} has been created !"
   end
-  
 
   def rentals_availability
     rentals_data = load_data('rentals.json')
-    if rentals_data.empty?
-      false
-    else
-      true
-    end
+    !rentals_data.empty?
   end
 
   def list_rentals()
@@ -129,7 +120,7 @@ class App
     puts 'Please enter ID:'
     person_id = gets.chomp.to_i
     get_rental = rentals_data.select { |rental| rental['person_id'] == person_id }
-    
+
     if get_rental.empty?
       puts 'No rentals matched with your ID'
     else
@@ -141,11 +132,9 @@ class App
   end
 
   def save_data(filename, data)
-    begin
-      File.write(filename, JSON.generate(data))
-    rescue StandardError => e
-      puts "Error writing file: #{e}"
-    end
+    File.write(filename, JSON.generate(data))
+  rescue StandardError => e
+    puts "Error writing file: #{e}"
   end
 
   def save_people_data
@@ -164,7 +153,7 @@ class App
           'id' => person.id,
           'name' => person.name,
           'age' => person.age,
-          'specialization' => person.specialization,
+          'specialization' => person.specialization
         }
       end
     end
@@ -178,7 +167,7 @@ class App
         'date' => rental.date,
         'book_title' => rental.book.title,
         'person_name' => rental.person.name,
-        'person_id' => rental.person.id,
+        'person_id' => rental.person.id
       }
     end
     save_data('rentals.json', rentals_data)

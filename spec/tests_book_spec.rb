@@ -24,8 +24,8 @@ describe Book do
   end
 
   context 'when adding a rental to a book' do
-    let(:book) { Book.new('A', 'B') } 
-    let(:person) { Person.new(15, name: 'John Doe', parent_permission: true) }  
+    let(:book) { Book.new('A', 'B') }
+    let(:person) { Person.new(15, name: 'John Doe', parent_permission: true) }
     let(:rental) { instance_double('Rental') }
     let(:date) { '01-01-1900' }
 
@@ -41,9 +41,4 @@ describe Book do
       expect(book.rentals).to include(rental)
     end
   end
-end
-
-
-
-
 end
