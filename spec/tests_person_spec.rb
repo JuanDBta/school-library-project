@@ -53,4 +53,22 @@ describe Person do
       expect(person.send(:of_age?)).to be(false)
     end
   end
+  context 'when adding a rental to a book' do
+    let(:book) { Book.new('A', 'B') } 
+    let(:person) { Person.new(15, name: 'John Doe', parent_permission: true) }  
+    let(:rental) { instance_double('Rental') }
+    let(:date) { '01-01-1900' }
+
+    before do
+      allow(Rental).to receive(:new).with(date, book, person).and_return(rental)
+      allow(rental).to receive(:date).and_return(date)
+      allow(rental).to receive(:person).and_return(person)
+
+      book.add_rental(date, person)
+    end
+
+    it 'adds the rental to the rentals array' do
+      expect(book.rentals).to include(rental)
+    end
+  end
 end
