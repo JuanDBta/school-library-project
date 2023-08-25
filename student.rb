@@ -1,6 +1,5 @@
 require './person'
 
-# Creating class Student
 class Student < Person
   attr_accessor :classroom, :parent_permission
 

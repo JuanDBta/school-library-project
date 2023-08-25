@@ -89,7 +89,7 @@ class App
     books_data = load_data('books.json')
     people_data = load_data('people.json')
 
-    book = books_data.find { |book_data| book_data['title'] == book_title }
+    book = books_data.find { |book_item| book_item['title'] == book_title }
     person = people_data.find { |person_data| person_data['name'] == person_name }
 
     if book.nil? || person.nil?
