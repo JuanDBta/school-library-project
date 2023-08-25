@@ -65,6 +65,7 @@
 - **[Set up associations]**
 - **[Added basic UI]**
 - **[Refactor code]**
+- **[Preserve data]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -128,7 +129,6 @@ You can deploy this project using:<br>[Coming Soon!!!](https://github.com/JuanDB
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Preserve data]**
 - [ ] **[Unit tests]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

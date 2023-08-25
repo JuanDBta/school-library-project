@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 require './menu'
+require './app'
 
 def main
   @menu = Menu.new
-  @menu.title
 
   loop do
     @menu.options
@@ -23,7 +23,6 @@ def main
         @menu.create_teacher
       else
         puts 'Invalid input'
-        puts 'Enter an option: '
       end
 
     when '4'
@@ -41,7 +40,6 @@ def main
 
     else
       puts 'Invalid input'
-      puts 'Enter an option: '
     end
   end
 end
